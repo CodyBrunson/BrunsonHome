@@ -1,0 +1,12 @@
+A:\Code\BrunsonHome\BrunsonHome.Shared\bin\Debug\net7.0\BrunsonHome.Shared.deps.json
+A:\Code\BrunsonHome\BrunsonHome.Shared\bin\Debug\net7.0\BrunsonHome.Shared.dll
+A:\Code\BrunsonHome\BrunsonHome.Shared\bin\Debug\net7.0\BrunsonHome.Shared.pdb
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.csproj.AssemblyReference.cache
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.GeneratedMSBuildEditorConfig.editorconfig
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.AssemblyInfoInputs.cache
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.AssemblyInfo.cs
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.csproj.CoreCompileInputs.cache
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.dll
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\refint\BrunsonHome.Shared.dll
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\BrunsonHome.Shared.pdb
+A:\Code\BrunsonHome\BrunsonHome.Shared\obj\Debug\net7.0\ref\BrunsonHome.Shared.dll
