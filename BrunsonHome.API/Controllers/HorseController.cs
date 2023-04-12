@@ -15,28 +15,56 @@ public class HorseController : ControllerBase
         _horseRepository = horseRepository;
     }
     
-    [HttpGet]
-    public async Task<ActionResult<List<Horse>>> GetAllHorses()
+    [HttpGet("GetAllHorses")]
+    public async Task<ActionResult<List<HorseResponse>>> GetAllHorses()
     {
         var result = await _horseRepository.GetAllHorses();
-        return Ok(result);
+        return Ok(result.Adapt<List<HorseResponse>>());
     }
     
-    [HttpGet("{id}")]
-    public async Task<ActionResult<List<Horse>>> GetHorseById(int id)
+    [HttpGet("GetHorseById/{id}")]
+    public async Task<ActionResult<HorseResponse>> GetHorseById(int id)
     {
         var result = await _horseRepository.GetHorseById(id);
         if (result is null)
         {
             return NotFound("Horse with given id " + id + " does not exist.");
         }
-        return Ok(result);
+        return Ok(result.Adapt<HorseResponse>());
     }
 
-    [HttpPost]
+    [HttpPost("CreateNewHorse")]
     public async Task<ActionResult<HorseCreateRequest>> CreateHorse(HorseCreateRequest request)
     {
         return Ok(await _horseRepository.CreateHorse(request));
+    }
+
+    [HttpPut("UpdateHorse/{id}")]
+    public async Task<ActionResult<HorseUpdateRequest>> UpdateHorse(int id, HorseUpdateRequest request)
+    {
+        try
+        {
+            var result = await _horseRepository.UpdateHorse(id, request);
+            return Ok(result);
+        }
+        catch (EntityNotFoundException)
+        {
+            return NotFound($"Horse with id {id} is not found.");
+        }
+    }
+
+    [HttpDelete("DeleteHorse/{id}")]
+    public async Task<ActionResult<HorseDeleteRequest>> DeleteHorse(int id)
+    {
+        try
+        {
+            var result = await _horseRepository.DeleteHorse(id);
+            return Ok(result);
+        }
+        catch (EntityNotFoundException)
+        {
+            return NotFound($"Horse with id {id} is not found.");
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-﻿namespace BrunsonHome.Shared.Models;
+﻿namespace BrunsonHome.Shared.Models.HorseModels;
 
 public record struct HorseCreateRequest(
     string BarnName,

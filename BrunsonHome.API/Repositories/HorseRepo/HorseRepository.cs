@@ -15,9 +15,11 @@ public class HorseRepository : IHorseRepository
         return await _context.Horses.ToListAsync();
     }
 
-    public async Task<Horse?> GetHorseById(int id)
+    public async Task<Horse> GetHorseById(int id)
     {
         var result = await _context.Horses.FindAsync(id);
+        if(result is null)
+            throw new EntityNotFoundException($"Entity with id {id} was not found.");
         return result;
     }
 
@@ -27,5 +29,31 @@ public class HorseRepository : IHorseRepository
         await _context.SaveChangesAsync();
         
         return request;
+    }
+
+    public async Task<Horse> UpdateHorse(int id, HorseUpdateRequest request)
+    {
+        var ctxHorse = await _context.Horses.FindAsync(id);
+        if (ctxHorse is null)
+            throw new EntityNotFoundException($"Entity with id {id} was not found.");
+
+        ctxHorse.BarnName = request.BarnName;
+        ctxHorse.RegisteredName = request.RegisteredName;
+        ctxHorse.PurchaseDate = request.PurchaseDate;
+        ctxHorse.UpdateDate = DateTime.Now;
+        await _context.SaveChangesAsync();
+
+        return await GetHorseById(id);
+    }
+
+    public async Task<HorseDeleteRequest> DeleteHorse(int id)
+    {
+        var ctxHorse = await _context.Horses.FindAsync(id);
+        if (ctxHorse is null)
+            throw new EntityNotFoundException($"Entity with id {id} was not found.");
+
+        _context.Horses.Remove(ctxHorse);
+        await _context.SaveChangesAsync();
+        return ctxHorse.Adapt<HorseDeleteRequest>();
     }
 }
