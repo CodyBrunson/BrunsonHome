@@ -2,5 +2,7 @@
 
 public interface IHorseRepository
 {
-    Task<List<HorseResponse>> GetAllHorses();
+    Task<List<Horse>> GetAllHorses();
+    Task<Horse?> GetHorseById(int id);
+    Task<HorseCreateRequest> CreateHorse(HorseCreateRequest request);
 }

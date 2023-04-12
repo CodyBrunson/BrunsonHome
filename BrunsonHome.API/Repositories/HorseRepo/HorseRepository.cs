@@ -4,17 +4,28 @@ namespace BrunsonHome.API.Repositories.HorseRepo;
 
 public class HorseRepository : IHorseRepository
 {
-    private static readonly List<Horse> Horses = new List<Horse>()
+    private readonly DataContext _context;
+
+    public HorseRepository(DataContext context)
     {
-        new Horse()
-        {
-            Id = 1,
-            BarnName = "Willow",
-            RegisteredName = "Not Sure"
-        }
-    };
-    public async Task<List<HorseResponse>> GetAllHorses()
+        _context = context;
+    }
+    public async Task<List<Horse>> GetAllHorses()
     {
-        return  Horses.Adapt<List<HorseResponse>>();
+        return await _context.Horses.ToListAsync();
+    }
+
+    public async Task<Horse?> GetHorseById(int id)
+    {
+        var result = await _context.Horses.FindAsync(id);
+        return result;
+    }
+
+    public async Task<HorseCreateRequest> CreateHorse(HorseCreateRequest request)
+    {
+        _context.Horses.Add(request.Adapt<Horse>());
+        await _context.SaveChangesAsync();
+        
+        return request;
     }
 }

@@ -1,7 +1,11 @@
 ﻿namespace BrunsonHome.Shared.Entities;
 
-public record struct Horse(
-    int Id,
-    string BarnName,
-    string RegisteredName
-);
+public class Horse
+{
+    public int Id { get; set; }
+    public required string BarnName { get; set; }
+    public string? RegisteredName { get; set; }
+    public DateTime? PurchaseDate { get; set; }
+    public DateTime AddDate { get; set; } = DateTime.Now;
+    public DateTime? UpdateDate { get; set; }
+}

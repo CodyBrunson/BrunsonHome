@@ -1,6 +1,8 @@
 ﻿namespace BrunsonHome.Shared.Models;
 
 public record struct HorseResponse(
+    int Id,
     string BarnName, 
-    string RegisteredName
+    string RegisteredName,
+    DateTime AddDate
     );
