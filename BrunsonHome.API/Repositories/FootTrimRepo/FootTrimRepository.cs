@@ -41,11 +41,13 @@ public class FootTrimRepository : IFootTrimRepository
         {
             _context.FootTrims.Remove(ctxFootTrim);
             ctxHorse.RecentTrim = ctxHorse.FootTrims.Last();
+            ctxHorse.UpdateDate = DateTime.Now;
             await _context.SaveChangesAsync();
             return;
         }
         
         _context.FootTrims.Remove(ctxFootTrim);
+        ctxHorse.UpdateDate = DateTime.Now;
         await _context.SaveChangesAsync();
     }
 }
