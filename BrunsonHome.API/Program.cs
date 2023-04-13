@@ -1,5 +1,7 @@
 
 
+using BrunsonHome.API.Repositories.FootTrimRepo;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 //Scoped Services
 builder.Services.AddScoped<IHorseRepository, HorseRepository>();
+builder.Services.AddScoped<IFootTrimRepository, FootTrimRepository>();
 
 
 var app = builder.Build();

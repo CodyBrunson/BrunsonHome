@@ -23,14 +23,14 @@ public class HorseController : ControllerBase
     }
     
     [HttpGet("GetHorseById/{id}")]
-    public async Task<ActionResult<HorseResponse>> GetHorseById(int id)
+    public async Task<ActionResult<Horse>> GetHorseById(int id)
     {
         var result = await _horseRepository.GetHorseById(id);
         if (result is null)
         {
             return NotFound("Horse with given id " + id + " does not exist.");
         }
-        return Ok(result.Adapt<HorseResponse>());
+        return Ok(result);
     }
 
     [HttpPost("CreateNewHorse")]

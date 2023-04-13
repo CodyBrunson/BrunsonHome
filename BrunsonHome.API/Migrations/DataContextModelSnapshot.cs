@@ -22,6 +22,27 @@ namespace BrunsonHome.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.FootTrim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("HorseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TrimDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HorseId");
+
+                    b.ToTable("FootTrims");
+                });
+
             modelBuilder.Entity("BrunsonHome.Shared.Entities.Horse", b =>
                 {
                     b.Property<int>("Id")
@@ -40,6 +61,9 @@ namespace BrunsonHome.API.Migrations
                     b.Property<DateTime?>("PurchaseDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("RecentTrimId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RegisteredName")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,7 +72,30 @@ namespace BrunsonHome.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RecentTrimId");
+
                     b.ToTable("Horses");
+                });
+
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.FootTrim", b =>
+                {
+                    b.HasOne("BrunsonHome.Shared.Entities.Horse", null)
+                        .WithMany("FootTrims")
+                        .HasForeignKey("HorseId");
+                });
+
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.Horse", b =>
+                {
+                    b.HasOne("BrunsonHome.Shared.Entities.FootTrim", "RecentTrim")
+                        .WithMany()
+                        .HasForeignKey("RecentTrimId");
+
+                    b.Navigation("RecentTrim");
+                });
+
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.Horse", b =>
+                {
+                    b.Navigation("FootTrims");
                 });
 #pragma warning restore 612, 618
         }

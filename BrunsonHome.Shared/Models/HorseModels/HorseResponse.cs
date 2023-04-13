@@ -1,4 +1,6 @@
-﻿namespace BrunsonHome.Shared.Models.HorseModels;
+﻿using BrunsonHome.Shared.Entities;
+
+namespace BrunsonHome.Shared.Models.HorseModels;
 
 public record struct HorseResponse(
     int Id,

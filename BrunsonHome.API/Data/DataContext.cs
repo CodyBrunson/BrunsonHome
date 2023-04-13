@@ -7,4 +7,5 @@ public class DataContext : DbContext
     }
     
     public DbSet<Horse> Horses { get; set; }
+    public DbSet<FootTrim> FootTrims { get; set; }
 }

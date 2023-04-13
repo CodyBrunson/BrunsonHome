@@ -12,14 +12,21 @@ public class HorseRepository : IHorseRepository
     }
     public async Task<List<Horse>> GetAllHorses()
     {
-        return await _context.Horses.ToListAsync();
+        var result = await _context.Horses.ToListAsync();
+        return result;
     }
 
     public async Task<Horse> GetHorseById(int id)
     {
-        var result = await _context.Horses.FindAsync(id);
+        var result = await _context.Horses
+            .Where(i => i.Id == id)
+            .Include(horse => horse.FootTrims)
+            .FirstOrDefaultAsync();
+        
         if(result is null)
             throw new EntityNotFoundException($"Entity with id {id} was not found.");
+        
+        
         return result;
     }
 
