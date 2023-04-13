@@ -8,4 +8,6 @@ public class Horse
     public DateTime? PurchaseDate { get; set; }
     public DateTime AddDate { get; set; } = DateTime.Now;
     public DateTime? UpdateDate { get; set; }
+    public List<FootTrim> FootTrims { get; set; } = new List<FootTrim>();
+    public FootTrim? RecentTrim { get; set; }
 }
