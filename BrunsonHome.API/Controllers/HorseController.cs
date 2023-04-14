@@ -39,17 +39,17 @@ public class HorseController : ControllerBase
         return Ok(await _horseRepository.CreateHorse(request));
     }
 
-    [HttpPut("UpdateHorse/{id}")]
-    public async Task<ActionResult<HorseUpdateRequest>> UpdateHorse(int id, HorseUpdateRequest request)
+    [HttpPut("UpdateHorse")]
+    public async Task<ActionResult<HorseUpdateRequest>> UpdateHorse(HorseUpdateRequest request)
     {
         try
         {
-            var result = await _horseRepository.UpdateHorse(id, request);
+            var result = await _horseRepository.UpdateHorse(request);
             return Ok(result);
         }
         catch (EntityNotFoundException)
         {
-            return NotFound($"Horse with id {id} is not found.");
+            return NotFound($"Horse with id {request.Id} is not found.");
         }
     }
 

@@ -39,11 +39,11 @@ public class HorseRepository : IHorseRepository
         return request;
     }
 
-    public async Task<Horse> UpdateHorse(int id, HorseUpdateRequest request)
+    public async Task<Horse> UpdateHorse(HorseUpdateRequest request)
     {
-        var ctxHorse = await _context.Horses.FindAsync(id);
+        var ctxHorse = await _context.Horses.FindAsync(request.Id);
         if (ctxHorse is null)
-            throw new EntityNotFoundException($"Entity with id {id} was not found.");
+            throw new EntityNotFoundException($"Entity with id {request.Id} was not found.");
 
         ctxHorse.BarnName = request.BarnName;
         ctxHorse.RegisteredName = request.RegisteredName;
@@ -51,7 +51,7 @@ public class HorseRepository : IHorseRepository
         ctxHorse.UpdateDate = DateTime.Now;
         await _context.SaveChangesAsync();
 
-        return await GetHorseById(id);
+        return await GetHorseById(request.Id);
     }
 
     public async Task<HorseDeleteRequest> DeleteHorse(int id)
