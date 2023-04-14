@@ -64,6 +64,9 @@ namespace BrunsonHome.API.Migrations
                     b.Property<int?>("RecentTrimId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RecentWormingId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RegisteredName")
                         .HasColumnType("nvarchar(max)");
 
@@ -74,7 +77,34 @@ namespace BrunsonHome.API.Migrations
 
                     b.HasIndex("RecentTrimId");
 
+                    b.HasIndex("RecentWormingId");
+
                     b.ToTable("Horses");
+                });
+
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.Worming", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("HorseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Product")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("WormingDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HorseId");
+
+                    b.ToTable("Wormings");
                 });
 
             modelBuilder.Entity("BrunsonHome.Shared.Entities.FootTrim", b =>
@@ -90,12 +120,27 @@ namespace BrunsonHome.API.Migrations
                         .WithMany()
                         .HasForeignKey("RecentTrimId");
 
+                    b.HasOne("BrunsonHome.Shared.Entities.Worming", "RecentWorming")
+                        .WithMany()
+                        .HasForeignKey("RecentWormingId");
+
                     b.Navigation("RecentTrim");
+
+                    b.Navigation("RecentWorming");
+                });
+
+            modelBuilder.Entity("BrunsonHome.Shared.Entities.Worming", b =>
+                {
+                    b.HasOne("BrunsonHome.Shared.Entities.Horse", null)
+                        .WithMany("Wormings")
+                        .HasForeignKey("HorseId");
                 });
 
             modelBuilder.Entity("BrunsonHome.Shared.Entities.Horse", b =>
                 {
                     b.Navigation("FootTrims");
+
+                    b.Navigation("Wormings");
                 });
 #pragma warning restore 612, 618
         }

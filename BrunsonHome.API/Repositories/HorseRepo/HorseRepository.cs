@@ -21,6 +21,7 @@ public class HorseRepository : IHorseRepository
         var result = await _context.Horses
             .Where(i => i.Id == id)
             .Include(horse => horse.FootTrims)
+            .Include(horse => horse.Wormings)
             .FirstOrDefaultAsync();
         
         if(result is null)

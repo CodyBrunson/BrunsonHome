@@ -29,12 +29,16 @@ public class FootTrimRepository : IFootTrimRepository
             .Where(i => i.Id == horseId)
             .Include(horse => horse.FootTrims)
             .FirstOrDefaultAsync();
-        if(ctxFootTrim is null || ctxHorse is null) 
+        
+        if(ctxFootTrim is null)
             throw new EntityNotFoundException($"Entity with id {trimId} was not found.");
+        
+        if(ctxHorse is null) 
+            throw new EntityNotFoundException($"Entity with id {horseId} was not found.");
 
         if (ctxHorse.RecentTrim is null)
         {
-            throw new NoTrimsFoundException("Unable to delete trim as the horse it belongs to has never been trimmed.");
+            throw new NoTrimsFoundException("Unable to delete trim as the horse it doesn't have a recent trim date.");
         }
 
         if (ctxHorse.RecentTrim.Id == trimId && ctxHorse.FootTrims.Contains(ctxFootTrim))
