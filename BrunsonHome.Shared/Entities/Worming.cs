@@ -1,8 +1,7 @@
 ﻿namespace BrunsonHome.Shared.Entities;
 
-public class Worming
+public class Worming : SoftDeleteEntity
 {
-    public int Id { get; set; }
     public string Product { get; set; }
     public DateTime WormingDate { get; set; }
 }
