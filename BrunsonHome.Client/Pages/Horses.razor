@@ -1,0 +1,39 @@
+﻿@page "/horses"
+
+<PageTitle>Horses</PageTitle>
+<h3>Horses</h3>
+
+@if (horses is not null)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Registered Name</th>
+            <th>Purchase Date</th>
+            <th>Add Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var horse in horses)
+            {
+                <tr>
+                    <td>@horse.BarnName</td>
+                    <td>@horse.RegisteredName</td>
+                    <td>@horse.PurchaseDate</td>
+                    <td>@horse.AddDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+
+@code {
+
+}

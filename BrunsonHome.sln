@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrunsonHome.API", "BrunsonH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrunsonHome.Shared", "BrunsonHome.Shared\BrunsonHome.Shared.csproj", "{A176F023-05F6-44E8-86CE-62CC3014D1AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrunsonHome.Client", "BrunsonHome.Client\BrunsonHome.Client.csproj", "{883BA5D7-DDA7-4686-B6E4-B8A7FDD33612}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A176F023-05F6-44E8-86CE-62CC3014D1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A176F023-05F6-44E8-86CE-62CC3014D1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A176F023-05F6-44E8-86CE-62CC3014D1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883BA5D7-DDA7-4686-B6E4-B8A7FDD33612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883BA5D7-DDA7-4686-B6E4-B8A7FDD33612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883BA5D7-DDA7-4686-B6E4-B8A7FDD33612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883BA5D7-DDA7-4686-B6E4-B8A7FDD33612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

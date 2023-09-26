@@ -5,7 +5,7 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
     }
-    
+
     public DbSet<Horse> Horses { get; set; }
     public DbSet<FootTrim> FootTrims { get; set; }
     public DbSet<Worming> Wormings { get; set; }
