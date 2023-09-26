@@ -26,8 +26,7 @@ public class HorseRepository : IHorseRepository
         
         if(result is null)
             throw new EntityNotFoundException($"Entity with id {id} was not found.");
-        
-        
+
         return result;
     }
 

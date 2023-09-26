@@ -30,7 +30,8 @@ public class HorseController : ControllerBase
         {
             return NotFound("Horse with given id " + id + " does not exist.");
         }
-        return Ok(result);
+        
+        return Ok(result.Adapt<HorseGetByIDResponse>());
     }
 
     [HttpPost("CreateNewHorse")]
